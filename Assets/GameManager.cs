@@ -8,6 +8,8 @@ public class GameManager : GenericSingletonClass<GameManager>
 
     public int playerNumber;
 
+    public int playerUnits = 18;
+
     public bool myTurn = false;
 
     public List<GameObject> units;
@@ -32,10 +34,10 @@ public class GameManager : GenericSingletonClass<GameManager>
         if(playerNumber == 0) myTurn = true;
         units[playerNumber].SetActive(true);
 
-        for(var i = 0; i < 10; i++)
-        {
-            units[playerNumber].transform.GetChild(i).gameObject.AddComponent<Drag>();
-        }
+        //for(var i = 0; i < units[playerNumber].transform.childCount; i++)
+        //{
+        //    units[playerNumber].transform.GetChild(i).gameObject.AddComponent<Drag>();
+        //}
     }
 
     public void SetOponent(int oponent){
@@ -44,7 +46,7 @@ public class GameManager : GenericSingletonClass<GameManager>
 
     public void MoveOponent(int playerNumber, int playerUnit, float x, float z){
         if(playerNumber == this.playerNumber) return;
-        units[playerNumber].transform.GetChild(playerUnit).position = new Vector3(x, 1 ,z);
+        units[playerNumber].transform.GetChild(playerUnit).localPosition = new Vector3(x, z, 0.2175424f);
     }
 
     public void SendPlayerMove(int unitNumber, Vector3 position){

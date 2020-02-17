@@ -43,7 +43,7 @@ public class Drag : MonoBehaviour {
 
     void OnMouseUp(){
         if(!GameManager.Instance.myTurn) return;
-        GameManager.Instance.SendPlayerMove(transform.GetSiblingIndex(), transform.position);
+        GameManager.Instance.SendPlayerMove(transform.GetSiblingIndex(), transform.localPosition);
     }
 
 }

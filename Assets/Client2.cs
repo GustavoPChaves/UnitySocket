@@ -149,14 +149,15 @@ public class Client2 : MonoBehaviour
     }
 
     public void SendPlayerMove(int playerNumber, int playerUnit, Vector3 position){
-        Send(String.Format("&MOVE|{0}|{1}|{2}|{3}", playerNumber, playerUnit, position.x, position.z));
+        print(position);
+        Send(String.Format("&MOVE|{0}|{1}|{2}|{3}", playerNumber, playerUnit, position.x, position.y));
     }
 
     public void ReceivePlayerMove(string data){
         int playerNumber = Convert.ToInt32(data.Split('|')[1]);
         int unitNumber = Convert.ToInt32(data.Split('|')[2]);
-        float x = float.Parse((data.Split('|')[3]), System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
-        float z = float.Parse((data.Split('|')[4]), System.Globalization.CultureInfo.InvariantCulture.NumberFormat);
+        float x = float.Parse((data.Split('|')[3]));
+        float z = float.Parse((data.Split('|')[4]));
 
         GameManager.Instance.MoveOponent(playerNumber, unitNumber, x, z);
     }
