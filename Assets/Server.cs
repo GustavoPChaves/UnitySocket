@@ -73,16 +73,23 @@ public class Server : GenericSingletonClass<Server>
 
         for(int i = 0; i < disconnectList.Count - 1; i++)
         {
-            Broadcast(disconnectList[i].clientName + " Has Disconnected", clients);
-            Broadcast("REMOVE|" + i.ToString(), clients);
             clients.Remove(disconnectList[i]);
+            Broadcast(disconnectList[i].clientName + " Has Disconnected", clients);
             disconnectList.RemoveAt(i);
-            
-            if(clients. Count == 1){
-                Broadcast("WIN|" + clients[0].clientName, clients);
-                Broadcast("TURN|99", clients);
-            }
+            StartCoroutine(Disconnected(i.ToString()));   
         }
+    }
+
+    IEnumerator Disconnected(string data)
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        Broadcast("REMOVE|" + data, clients);
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        Broadcast("WIN|" + clients[0].clientName, clients);
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        Broadcast("TURN|99", clients);
     }
 
     void Broadcast(string data, List<ServerClient> clients)

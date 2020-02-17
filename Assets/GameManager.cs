@@ -34,10 +34,10 @@ public class GameManager : GenericSingletonClass<GameManager>
         if(playerNumber == 0) myTurn = true;
         units[playerNumber].SetActive(true);
 
-        //for(var i = 0; i < units[playerNumber].transform.childCount; i++)
-        //{
-        //    units[playerNumber].transform.GetChild(i).gameObject.AddComponent<Drag>();
-        //}
+        for (var i = 0; i < units[playerNumber].transform.childCount; i++)
+        {
+            units[playerNumber].transform.GetChild(i).gameObject.AddComponent<Drag>();
+        }
     }
 
     public void SetOponent(int oponent){

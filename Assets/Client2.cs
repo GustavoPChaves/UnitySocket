@@ -74,7 +74,6 @@ public class Client2 : MonoBehaviour
                 string data = reader.ReadLine();
                 if(data != null)
                 {
-                    Debug.Log(data);
                     StartCoroutine(OnIncomingData(data));
                 }
             }
@@ -91,7 +90,7 @@ public class Client2 : MonoBehaviour
 
     IEnumerator OnIncomingData(string data)
     {
-        
+        print(data);
         if(data == "%NAME")
         {
             Send("&NAME|" + clientName);
