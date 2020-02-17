@@ -52,10 +52,13 @@ public class Client2 : MonoBehaviour
 
         }
     }
-    void CreateTextCell(string message)
+    void CreateTextCell(string message, bool isPlayermessage = false)
     {
         var newCell = Instantiate(CellPrefab);
         newCell.GetComponent<Text>().text = String.Copy(message);
+        if (isPlayermessage){
+            newCell.GetComponent<Text>().color = Color.red;
+        }
         newCell.transform.SetParent(messagePanel.transform);
     }
     // Start is called before the first frame update

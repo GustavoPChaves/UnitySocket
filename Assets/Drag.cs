@@ -21,7 +21,7 @@ public class Drag : MonoBehaviour {
     void OnMouseDown()
     {
         if(!GameManager.Instance.myTurn) return;
-
+        DetectEnemies.canDetect = false;
         if(firstMove){
 
             firstMove = false;
@@ -43,6 +43,8 @@ public class Drag : MonoBehaviour {
 
     void OnMouseUp(){
         if(!GameManager.Instance.myTurn) return;
+        DetectEnemies.canDetect = true;
+
         GameManager.Instance.SendPlayerMove(transform.GetSiblingIndex(), transform.localPosition);
     }
 

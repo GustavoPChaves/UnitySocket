@@ -25,6 +25,10 @@ public class GameManager : GenericSingletonClass<GameManager>
     // Update is called once per frame
     void Update()
     {
+        if(playerUnits <= 2)
+        {
+            client.Won(playerNumber == 0 ? 1 : 0);
+        }
         if (Input.GetKeyDown(KeyCode.Escape))  
             Reload();
     }
@@ -51,6 +55,10 @@ public class GameManager : GenericSingletonClass<GameManager>
 
     public void SendPlayerMove(int unitNumber, Vector3 position){
         client.SendPlayerMove(playerNumber, unitNumber, position);
+    }
+    public void SendEnemieMove(int unitNumber, Vector3 position)
+    {
+        client.SendPlayerMove(playerNumber == 0 ? 1 : 0, unitNumber, position);
     }
 
     public void RemovePlayer(int playerNumber){
